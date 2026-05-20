@@ -1,0 +1,2220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutorials for Digital Makers - Cytron Improvement Mockup</title>
+  <meta name="description" content="Simplified tutorials for electronic and digital making projects. Learn, build, and innovate with step-by-step guides.">
+  
+  <!-- Modern Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* DESIGN SYSTEM: CLEAN minimalist LIGHT SYSTEM */
+    :root {
+      --bg: #ffffff;
+      --surface-light: #f8fafc;
+      --border: #e2e8f0;
+      --border-dark: #cbd5e1;
+      --text: #0f172a;
+      --text-medium: #334155;
+      --text-muted: #64748b;
+      
+      --primary: #f39c12; /* Cytron Orange/Amber */
+      --primary-hover: #d3820a;
+      --primary-light: #fef3c7;
+      
+      --secondary: #2563eb; /* Corporate Blue */
+      --secondary-hover: #1d4ed8;
+      --secondary-light: #dbeafe;
+      
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.03);
+      
+      --radius: 8px;
+      --transition: all 0.2s ease-in-out;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      outline: none;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+    }
+
+    /* MOCKUP HEADER BANNER */
+    .mockup-banner {
+      background: #f1f5f9;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-medium);
+      text-align: center;
+      padding: 8px 24px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .mockup-banner-badge {
+      background: var(--border-dark);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* UTILITY TOP BAR */
+    .top-bar {
+      background: #0f172a;
+      padding: 8px 24px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #94a3b8;
+    }
+
+    .top-bar-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .top-bar-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .top-bar-links a:hover {
+      color: #ffffff;
+    }
+
+    .top-bar-right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .country-switch {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .country-dropdown {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 4px;
+      min-width: 130px;
+      box-shadow: var(--shadow-lg);
+      display: none;
+      z-index: 1002;
+      padding: 4px 0;
+    }
+
+    .country-dropdown.active {
+      display: block;
+    }
+
+    .country-dropdown-item {
+      padding: 6px 12px;
+      display: block;
+      width: 100%;
+      text-align: left;
+      border: none;
+      background: none;
+      color: #cbd5e1;
+      cursor: pointer;
+      font-size: 0.75rem;
+    }
+
+    .country-dropdown-item:hover {
+      background: #334155;
+      color: #ffffff;
+    }
+
+    /* NAVIGATION */
+    .nav {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+    }
+
+    .nav-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 48px;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-badge {
+      background: var(--primary);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 1rem;
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-text {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: var(--text);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-medium);
+      padding: 8px 14px;
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-link:hover, .nav-item:hover > .nav-link {
+      color: var(--secondary);
+      background: var(--surface-light);
+    }
+
+    .nav-link.active {
+      color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px;
+      min-width: 220px;
+      box-shadow: var(--shadow-lg);
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      z-index: 1002;
+    }
+
+    .nav-item:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .dropdown-title {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--text-muted);
+      padding: 4px 8px 6px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 8px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border-radius: 4px;
+      color: var(--text-medium);
+    }
+
+    .dropdown-item:hover {
+      background: var(--surface-light);
+      color: var(--secondary);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .cart-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-medium);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .cart-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 0.6rem;
+      font-weight: 800;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-cta {
+      background: var(--primary);
+      color: #ffffff !important;
+      padding: 8px 16px;
+      border-radius: var(--radius);
+      font-size: 0.82rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .nav-cta:hover {
+      background: var(--primary-hover);
+    }
+
+    .menu-btn {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      width: 36px;
+      height: 36px;
+      color: var(--text);
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* MAIN CONTENT CONTAINER */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px 60px;
+    }
+
+    /* SECTION 1: SEARCH SECTION */
+    .search-section {
+      text-align: center;
+      padding: 48px 0 32px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .search-section h1 {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .search-section p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      max-width: 580px;
+      margin: 0 auto 24px;
+    }
+
+    .search-wrapper {
+      max-width: 580px;
+      margin: 0 auto;
+      display: flex;
+      gap: 10px;
+    }
+
+    .search-box {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius);
+      padding: 2px 12px;
+      background: #ffffff;
+    }
+
+    .search-box:focus-within {
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .search-box input {
+      flex: 1;
+      border: none;
+      font-size: 0.88rem;
+      color: var(--text);
+      padding: 10px 4px;
+      background: transparent;
+    }
+
+    .clear-search-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 4px;
+      display: none;
+    }
+
+    .clear-search-btn.active {
+      display: block;
+    }
+
+    .search-btn {
+      background: var(--secondary);
+      color: #ffffff;
+      border: none;
+      padding: 0 20px;
+      border-radius: var(--radius);
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .search-btn:hover {
+      background: var(--secondary-hover);
+    }
+
+    /* SECTION 2: LEARNING PATH / AUDIENCE SECTION */
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .learning-path-section {
+      padding: 40px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .learning-path-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 12px;
+    }
+
+    .path-card {
+      background: var(--surface-light);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .path-card:hover {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-md);
+      background: #ffffff;
+    }
+
+    .path-card.active {
+      border-color: var(--primary);
+      background: #ffffff;
+      box-shadow: 0 0 0 2px var(--primary-light);
+    }
+
+    .path-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .path-card h3 span {
+      color: var(--primary);
+    }
+
+    .path-card p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .path-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: var(--border);
+      color: var(--text-medium);
+      align-self: flex-start;
+    }
+
+    .path-card.active .path-badge {
+      background: var(--primary-light);
+      color: var(--primary-hover);
+    }
+
+    .learning-path-info {
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* SECTION 3: RESOURCE HUBS SECTION */
+    .resource-hubs-section {
+      padding: 40px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hubs-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+    }
+
+    .hub-link-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 10px;
+      text-align: center;
+      background: #ffffff;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hub-link-card:hover {
+      border-color: var(--secondary);
+      box-shadow: var(--shadow-sm);
+      transform: translateY(-2px);
+    }
+
+    .hub-icon {
+      font-size: 1.25rem;
+    }
+
+    .hub-name {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-medium);
+    }
+
+    /* SECTION 4: FILTERS SECTION */
+    .filters-section {
+      padding: 32px 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .filter-chips-wrapper {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-chip {
+      background: var(--surface-light);
+      border: 1px solid var(--border);
+      color: var(--text-medium);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .filter-chip:hover {
+      background: #ffffff;
+      border-color: var(--border-dark);
+    }
+
+    .filter-chip.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+    }
+
+    .filters-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sort-dropdown {
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-medium);
+      padding: 6px 12px;
+      background: #ffffff;
+      cursor: pointer;
+    }
+
+    .layout-toggle {
+      display: flex;
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .layout-btn {
+      background: #ffffff;
+      border: none;
+      color: var(--text-muted);
+      width: 32px;
+      height: 30px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .layout-btn.active {
+      background: var(--surface-light);
+      color: var(--secondary);
+    }
+
+    /* SECTION 5: BEST MATCH TUTORIAL CARDS */
+    .results-bar {
+      margin-bottom: 16px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .results-bar span {
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 20px;
+    }
+
+    .grid.list-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .card:hover {
+      border-color: var(--border-dark);
+      box-shadow: var(--shadow-md);
+    }
+
+    .card-img-placeholder {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--surface-light);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      position: relative;
+    }
+
+    .card-type-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      color: var(--text-medium);
+    }
+
+    .badge-tutorial {
+      border-left: 3px solid var(--secondary);
+    }
+
+    .badge-project {
+      border-left: 3px solid var(--primary);
+    }
+
+    .card-favorite-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.75rem;
+    }
+
+    .card-body {
+      padding: 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-tags {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .card-tag {
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: var(--surface-light);
+      color: var(--text-medium);
+      border: 1px solid var(--border);
+    }
+
+    .card-body h3 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.4;
+      margin-bottom: 6px;
+      cursor: pointer;
+    }
+
+    .card-body h3:hover {
+      color: var(--secondary);
+    }
+
+    .card-body p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+      margin-bottom: 12px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      flex: 1;
+    }
+
+    .card-meta {
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .card-author {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      color: var(--text-medium);
+    }
+
+    .card-avatar {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--border-dark);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 800;
+    }
+
+    .card-info {
+      text-align: right;
+    }
+
+    /* CARD LIST LAYOUT MODIFICATIONS */
+    .grid.list-layout .card {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .grid.list-layout .card-img-placeholder {
+      width: 220px;
+      aspect-ratio: 16/9;
+      border-bottom: none;
+      border-right: 1px solid var(--border);
+    }
+
+    .grid.list-layout .card-body {
+      flex: 1;
+    }
+
+    /* SECTION 6: SUGGESTED / FEATURED SPOTLIGHT */
+    .suggested-section {
+      margin-top: 56px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .spotlight-card {
+      background: var(--surface-light);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .spotlight-img {
+      aspect-ratio: 16/9;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+
+    .spotlight-content h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .spotlight-content p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .spotlight-meta {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .spotlight-badge {
+      background: var(--primary-light);
+      color: var(--primary-hover);
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    /* PAGINATION */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      margin-top: 40px;
+    }
+
+    .page-btn {
+      min-width: 36px;
+      height: 36px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: #ffffff;
+      color: var(--text-medium);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .page-btn:hover {
+      border-color: var(--border-dark);
+      color: var(--text);
+    }
+
+    .page-btn.active {
+      background: var(--secondary);
+      color: #ffffff;
+      border-color: var(--secondary);
+    }
+
+    /* MAKER CONTRIBUTION CTA */
+    .contribution-cta-bar {
+      margin-top: 56px;
+      background: var(--surface-light);
+      border: 1px dashed var(--border-dark);
+      border-radius: var(--radius);
+      padding: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .contribution-cta-text h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .contribution-cta-text p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--surface-light);
+      border-top: 1px solid var(--border);
+      padding: 60px 24px 30px;
+      margin-top: 80px;
+    }
+
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 32px;
+    }
+
+    .footer-column h4 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .footer-column ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-column ul li a {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .footer-column ul li a:hover {
+      color: var(--secondary);
+    }
+
+    .footer-bottom {
+      max-width: 1280px;
+      margin: 48px auto 0;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 10px;
+    }
+
+    .social-icon-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.72rem;
+    }
+
+    .social-icon-btn:hover {
+      background: var(--surface-light);
+      color: var(--secondary);
+      border-color: var(--secondary);
+    }
+
+    /* MODALS & PORTALS */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.4);
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: #ffffff;
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius);
+      max-width: 580px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+
+    .modal-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    .modal-close:hover {
+      color: #ff4757;
+    }
+
+    .modal-body {
+      padding: 20px;
+    }
+
+    /* FORM SYSTEM */
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--text-medium);
+    }
+
+    .form-control {
+      width: 100%;
+      background: #ffffff;
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius);
+      padding: 8px 12px;
+      color: var(--text);
+      font-size: 0.85rem;
+    }
+
+    .form-control:focus {
+      border-color: var(--secondary);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .form-submit-btn {
+      background: var(--primary);
+      color: #ffffff;
+      border: none;
+      padding: 10px;
+      border-radius: var(--radius);
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .form-submit-btn:hover {
+      background: var(--primary-hover);
+    }
+
+    /* TOASTS */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 11000;
+    }
+
+    .toast {
+      background: #ffffff;
+      border: 1px solid var(--border-dark);
+      border-left: 4px solid var(--secondary);
+      border-radius: var(--radius);
+      padding: 12px 18px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 250px;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.2s ease-out;
+    }
+
+    .toast.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast-message {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-medium);
+    }
+
+    /* UTILITY FLOATER */
+    .scroll-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 1px solid var(--border-dark);
+      color: var(--text-medium);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--shadow-md);
+      z-index: 999;
+    }
+
+    .scroll-top:hover {
+      border-color: var(--secondary);
+      color: var(--secondary);
+    }
+
+    /* RESPONSIVE LAYOUT */
+    @media(max-width: 1024px) {
+      .hubs-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .footer-inner {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media(max-width: 768px) {
+      .learning-path-grid {
+        grid-template-columns: 1fr;
+      }
+      .hubs-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #ffffff;
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        padding: 16px;
+        box-shadow: var(--shadow-lg);
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .menu-btn {
+        display: flex;
+      }
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+      .spotlight-card {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Concept Mockup banner -->
+  <div class="mockup-banner">
+    <span class="mockup-banner-badge">IT Proposal Mockup</span>
+    <span>💡 Cytron Technologies Tutorials page simplified UX mockup. Plain corporate layout review.</span>
+  </div>
+
+  <!-- Utility top bar -->
+  <div class="top-bar">
+    <div class="top-bar-inner">
+      <div class="top-bar-links">
+        <a href="https://my.cytron.io/tutorial">Store</a>
+        <a href="https://my.cytron.io/raspberry-pi-for-industry">Industry</a>
+        <a href="https://my.cytron.io/education">Education</a>
+      </div>
+      <div class="top-bar-right">
+        <div class="country-switch" onclick="toggleCountryDropdown()">
+          <span>🌐 Malaysia</span> ▾
+          <div class="country-dropdown" id="countryDropdown">
+            <button class="country-dropdown-item" onclick="selectCountry('International')">International</button>
+            <button class="country-dropdown-item" onclick="selectCountry('Singapore')">Singapore</button>
+            <button class="country-dropdown-item" onclick="selectCountry('Malaysia')">Malaysia</button>
+            <button class="country-dropdown-item" onclick="selectCountry('Thailand')">Thailand</button>
+            <button class="country-dropdown-item" onclick="selectCountry('Vietnam')">Vietnam</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation header -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="logo-container">
+        <div class="logo-badge">C</div>
+        <span class="logo-text">CYTRON</span>
+      </a>
+      
+      <button class="menu-btn" onclick="toggleMobileMenu()">☰</button>
+      
+      <div class="nav-links" id="navLinks">
+        <div class="nav-item">
+          <a href="#" class="nav-link">Store</a>
+        </div>
+        <div class="nav-item">
+          <a href="#" class="nav-link active">Tutorials</a>
+        </div>
+        <div class="nav-item">
+          <a href="#" class="nav-link">Resource Hubs ▾</a>
+          <div class="dropdown-menu">
+            <div class="dropdown-title">Hardware Hubs</div>
+            <a href="https://edubit-hub.cytron.io" class="dropdown-item">🐝 EDU:BIT</a>
+            <a href="https://zoombit-hub.cytron.io" class="dropdown-item">🏎️ ZOOM:BIT</a>
+            <a href="https://rekabit-rbt-hub.cytron.io" class="dropdown-item">🤖 REKA:BIT RBT Kit</a>
+            <a href="https://reromicro-hub.cytron.io" class="dropdown-item">🤖 rero:micro</a>
+            <a href="https://pikabot-hub.cytron.io" class="dropdown-item">⚡ PikaBot</a>
+            <a href="https://edupico-hub.cytron.io" class="dropdown-item">🚀 EDU PICO</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="#" class="nav-link">Programs ▾</a>
+          <div class="dropdown-menu">
+            <div class="dropdown-title">Cytron Edu</div>
+            <a href="https://education.cytron.io/rac2026" class="dropdown-item">🏆 RAC2026 Competition</a>
+            <a href="https://edubit-hub.cytron.io/certification" class="dropdown-item">📜 EDU:BIT Cert</a>
+            <a href="https://zoombit-hub.cytron.io/certification" class="dropdown-item">📜 ZOOM:BIT Cert</a>
+            <a href="https://edupico-hub.cytron.io/certification" class="dropdown-item">📜 EDU PICO Cert</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="#" class="nav-link">Community ▾</a>
+          <div class="dropdown-menu">
+            <div class="dropdown-title">Makers Groups</div>
+            <a href="https://t.me/microbit_malaysia" class="dropdown-item">💬 micro:bit Channel</a>
+            <a href="https://t.me/arduinomakerboardMY" class="dropdown-item">💬 Arduino Group</a>
+            <a href="https://t.me/raspberrypieducationmy" class="dropdown-item">💬 Raspberry Pi Group</a>
+            <a href="https://t.me/trustme3dprint" class="dropdown-item">💬 3D Printing Hub</a>
+            <a href="https://t.me/nvidiajetson_cytron" class="dropdown-item">💬 Nvidia Jetson Group</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <button class="cart-btn" onclick="showToast('🛒 Shopping Cart Empty!')">
+          🛒
+          <span class="cart-count">0</span>
+        </button>
+        <button class="nav-cta" onclick="showToast('🔑 Login Form Triggered!')">Sign In</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Container for Sections -->
+  <div class="container">
+    
+    <!-- SECTION 1: SEARCH SECTION -->
+    <section class="search-section">
+      <h1>Tutorials for Digital Makers</h1>
+      <p>Simplified tutorials for electronic and digital making projects. Learn, build, and innovate with step-by-step guides.</p>
+      <div class="search-wrapper">
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="Search tutorials, projects, boards..." oninput="handleSearchInput()">
+          <button class="clear-search-btn" id="clearSearchBtn" onclick="clearSearch()">×</button>
+        </div>
+        <button class="search-btn" onclick="triggerSearchToast()">Search</button>
+      </div>
+    </section>
+
+    <!-- SECTION 2: LEARNING PATH / AUDIENCE SECTION -->
+    <section class="learning-path-section">
+      <h2 class="section-title">📂 What type of project are you working on?</h2>
+      <div class="learning-path-grid">
+        <div class="path-card active" id="pathAll" onclick="setPerspective('all')">
+          <h3><span>🌐</span> All Digital Projects</h3>
+          <p>Explore our entire catalog of step-by-step electronic development guides and embedded codes.</p>
+          <span class="path-badge">Default View</span>
+        </div>
+        
+        <div class="path-card" id="pathEducation" onclick="setPerspective('Education')">
+          <h3><span>🎓</span> Educational Projects</h3>
+          <p>Ideal for Students, Teachers, and Hobbyists. Simplified logic and STEM classroom materials.</p>
+          <span class="path-badge">For Schools & Makers</span>
+        </div>
+
+        <div class="path-card" id="pathIndustry" onclick="setPerspective('Industry')">
+          <h3><span>🏭</span> Industry / Enterprise</h3>
+          <p>Ideal for Engineers, Business Owners, and Professionals. Focused on reliability and Node-RED IoT interfaces.</p>
+          <span class="path-badge">For Professionals</span>
+        </div>
+      </div>
+      <div class="learning-path-info">Don't worry — you can switch anytime via the perspective cards above.</div>
+    </section>
+
+    <!-- SECTION 3: RESOURCE HUBS SECTION -->
+    <section class="resource-hubs-section">
+      <h2 class="section-title">🔌 Official Hardware Resource Hubs</h2>
+      <div class="hubs-grid">
+        <a href="https://edubit-hub.cytron.io" target="_blank" class="hub-link-card">
+          <span class="hub-icon">🐝</span>
+          <span class="hub-name">EDU:BIT</span>
+        </a>
+        <a href="https://zoombit-hub.cytron.io" target="_blank" class="hub-link-card">
+          <span class="hub-icon">🏎️</span>
+          <span class="hub-name">ZOOM:BIT</span>
+        </a>
+        <a href="https://rekabit-rbt-hub.cytron.io" target="_blank" class="hub-link-card">
+          <span class="hub-icon">⚙️</span>
+          <span class="hub-name">REKA:BIT Kit</span>
+        </a>
+        <a href="https://reromicro-hub.cytron.io" target="_blank" class="hub-link-card">
+          <span class="hub-icon">🤖</span>
+          <span class="hub-name">rero:micro</span>
+        </a>
+        <a href="https://pikabot-hub.cytron.io" target="_blank" class="hub-link-card">
+          <span class="hub-icon">⚡</span>
+          <span class="hub-name">PikaBot</span>
+        </a>
+        <a href="https://edupico-hub.cytron.io" target="_blank" class="hub-link-card">
+          <span class="hub-icon">🚀</span>
+          <span class="hub-name">EDU PICO</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- SECTION 6: SUGGESTED / FEATURED SPOTLIGHT -->
+    <section class="suggested-section" id="suggestedSection">
+      <h2 class="section-title">⭐ Featured Spotlight Guide</h2>
+      <div class="spotlight-card">
+        <div class="spotlight-img">🧠</div>
+        <div class="spotlight-content">
+          <span class="spotlight-badge">Highly Recommended</span>
+          <h3>Distil: An Offline AI Lecture Note Intelligence System</h3>
+          <p>Build an entirely offline AI study assistant on Raspberry Pi 5. Upload lecture notes, get instant summaries, and test equations with no internet, zero cloud connections, and 100% data privacy.</p>
+          <div class="spotlight-meta">
+            <span>By <strong>Nabilah Jailani</strong></span>
+            <span>📅 12 May 2026</span>
+            <span>⏱️ 22 min read</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: FILTERS SECTION -->
+    <section class="filters-section">
+      <div class="filter-chips-wrapper" id="categoryChips">
+        <!-- Populated by JS -->
+      </div>
+      
+      <div class="filters-controls">
+        <select class="sort-dropdown" id="sortSelect" onchange="handleSortChange()">
+          <option value="latest">Sort: Latest</option>
+          <option value="popular">Sort: Most Liked</option>
+          <option value="alphabetical">Sort: A - Z</option>
+        </select>
+        
+        <div class="layout-toggle">
+          <button class="layout-btn active" id="layoutGridBtn" onclick="setLayout('grid')">🎛️</button>
+          <button class="layout-btn" id="layoutListBtn" onclick="setLayout('list')">📝</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: BEST MATCH TUTORIAL CARDS -->
+    <div class="results-bar">
+      <div>Showing <span id="resultsCount">18</span> tutorials matching your settings</div>
+      <div style="cursor: pointer; color: var(--secondary); font-weight: 600;" onclick="clearFilters()">Reset Filters</div>
+    </div>
+
+    <div class="grid" id="tutorialGrid">
+      <!-- Populated by JS -->
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <button class="page-btn" onclick="showToast('‹ Previous Page')">‹</button>
+      <button class="page-btn active">1</button>
+      <button class="page-btn" onclick="showToast('Loading Page 2...')">2</button>
+      <button class="page-btn" onclick="showToast('Loading Page 3...')">3</button>
+      <button class="page-btn" onclick="showToast('Loading Page 4...')">4</button>
+      <button class="page-btn">…</button>
+      <button class="page-btn" onclick="showToast('Loading Page 59...')">59</button>
+      <button class="page-btn" onclick="showToast('› Next Page')">›</button>
+    </div>
+
+    <!-- Maker Contribution CTA -->
+    <div class="contribution-cta-bar">
+      <div class="contribution-cta-text">
+        <h3>Become a Cytron Tutorial Contributor</h3>
+        <p>Write step-by-step project guides for other makers and earn store credit points!</p>
+      </div>
+      <button class="nav-cta" onclick="openAuthorModal()">Submit Tutorial Proposal</button>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-column" style="grid-column: span 1;">
+        <h4 style="color: var(--secondary);">CYTRON</h4>
+        <p style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px;">Simplified tutorial platform for electronic and digital making projects.</p>
+        <span style="font-size: 0.75rem; color: var(--text-muted);">
+          ✉️ sales@cytron.io<br>
+          📞 +604-548 0668
+        </span>
+      </div>
+      
+      <div class="footer-column">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="https://my.cytron.io/support">Warranty / Return</a></li>
+          <li><a href="https://my.cytron.io/request-for-quotation">Request Quotation</a></li>
+          <li><a href="https://my.cytron.io/raspberry-pi-design-partner">Raspberry Pi Design Partner</a></li>
+          <li><a href="https://my.cytron.io/cytron-for-cikgu-program">Register as Teacher</a></li>
+          <li><a href="https://my.cytron.io/student-benefits-program">Register as Student</a></li>
+          <li><a href="https://my.cytron.io/eduteam-training-partner">Training Partner</a></li>
+          <li><a href="https://my.cytron.io/contact-us">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>About</h4>
+        <ul>
+          <li><a href="https://my.cytron.io/about-us">About Us</a></li>
+          <li><a href="https://my.cytron.io/delivery-information">Delivery Information</a></li>
+          <li><a href="https://my.cytron.io/return-policy">Return Policy</a></li>
+          <li><a href="https://my.cytron.io/membership">Membership</a></li>
+          <li><a href="https://my.cytron.io/payment-option">Payment Options</a></li>
+          <li><a href="https://my.cytron.io/cytroncash">CytronCash</a></li>
+          <li><a href="https://my.cytron.io/privacy-policy">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="https://my.cytron.io/training-partners">Training Partners</a></li>
+          <li><a href="https://my.cytron.io/c-discontinued-items">Discontinued Items</a></li>
+          <li><a href="https://my.cytron.io/FAQs">FAQs</a></li>
+          <li><a href="https://my.cytron.io/how-to-shop-at-cytron-malaysia">How to Shop</a></li>
+          <li><a href="https://my.cytron.io/1-to-1-replacement">1 to 1 Replacement</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Resource Hubs</h4>
+        <ul>
+          <li><a href="https://edubit-hub.cytron.io">EDU:BIT</a></li>
+          <li><a href="https://zoombit-hub.cytron.io">ZOOM:BIT</a></li>
+          <li><a href="https://rekabit-rbt-hub.cytron.io">REKA:BIT RBT Kit</a></li>
+          <li><a href="https://reromicro-hub.cytron.io">rero:micro</a></li>
+          <li><a href="https://pikabot-hub.cytron.io">PikaBot</a></li>
+          <li><a href="https://edupico-hub.cytron.io">EDU PICO</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; 2026 Cytron Technologies. All Rights Reserved. IT Layout Proposal.</span>
+      <div class="social-links">
+        <a href="https://www.facebook.com/cytronmy" class="social-icon-btn">FB</a>
+        <a href="https://www.youtube.com/user/cytrontech" class="social-icon-btn">YT</a>
+        <a href="https://my.cytron.io/cytrons-telegram-channel" class="social-icon-btn">TG</a>
+        <a href="https://github.com/CytronTechnologies" class="social-icon-btn">GH</a>
+        <a href="https://www.instagram.com/cytrontechmy/" class="social-icon-btn">IG</a>
+        <a href="https://www.tiktok.com/@cytrontech" class="social-icon-btn">TK</a>
+        <a href="https://twitter.com/cytrontech/" class="social-icon-btn">TW</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal: Author / Submission Form -->
+  <div class="modal-backdrop" id="authorModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">✍️ Submit Maker Tutorial Proposal</h3>
+        <button class="modal-close" onclick="closeAuthorModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <form id="authorForm" onsubmit="handleAuthorSubmit(event)">
+          <div class="form-group">
+            <label>Tutorial Title</label>
+            <input type="text" class="form-control" id="formTitle" placeholder="e.g. Smart IoT Plant Watering System" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Author Name</label>
+              <input type="text" class="form-control" id="formAuthor" placeholder="e.g. Jane Doe" required>
+            </div>
+            <div class="form-group">
+              <label>Board Platform</label>
+              <select class="form-control" id="formTag">
+                <option value="Raspberry Pi">Raspberry Pi</option>
+                <option value="micro:bit">micro:bit</option>
+                <option value="Arduino">Arduino</option>
+                <option value="Jetson">Jetson</option>
+                <option value="EDU PICO">EDU PICO</option>
+                <option value="Robotics">Robotics</option>
+                <option value="AI / ML">AI / ML</option>
+                <option value="IoT">IoT</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Tutorial Description</label>
+            <textarea class="form-control" id="formDesc" rows="3" placeholder="Provide a summary of the guide..." required></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Est. Read Time</label>
+              <input type="text" class="form-control" id="formRead" placeholder="e.g. 10 min read" required>
+            </div>
+            <div class="form-group">
+              <label>Content Type</label>
+              <select class="form-control" id="formType">
+                <option value="tutorial">Tutorial</option>
+                <option value="project">Project</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="form-submit-btn">🚀 Submit Proposal</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Quick View Detail Modal -->
+  <div class="modal-backdrop" id="detailModal">
+    <div class="modal-content" style="max-width: 680px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="detailTitle">Tutorial Details</h3>
+        <button class="modal-close" onclick="closeDetailModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div style="display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;">
+          <span class="card-tag" id="detailBadge"></span>
+          <span class="card-tag" id="detailTag"></span>
+          <span class="card-tag" id="detailRead"></span>
+        </div>
+        <p id="detailDesc" style="font-size: 0.85rem; line-height: 1.5; color: var(--text-medium); margin-bottom: 20px;"></p>
+        
+        <div style="border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; background: var(--surface-light); margin-bottom: 20px;">
+          <h4 style="font-size: 0.85rem; margin-bottom: 8px;">🛠️ Required Core Materials</h4>
+          <ul style="font-size: 0.78rem; padding-left: 16px; color: var(--text-medium); display: grid; grid-template-columns: 1fr 1fr; gap: 4px;">
+            <li>1x Development Board</li>
+            <li>1x Matching Core Sensors</li>
+            <li>1x Power Cable Connector</li>
+            <li>1x Basic Breadboard System</li>
+          </ul>
+        </div>
+
+        <button class="form-submit-btn" onclick="showToast('Redirecting to full tutorial guide...')">Read Full Step-by-Step Guide On Cytron Site</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast system -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Floating Back to Top -->
+  <button class="scroll-top" id="scrollTopBtn" onclick="scrollToTop()">▲</button>
+
+  <script>
+    // Real Cytron Tutorial Dataset
+    const tutorials = [
+      {
+        id: 1,
+        t: "RDK X5 Mission Ready Robotic Series",
+        a: "Syamil Safuan",
+        d: "19 May 2026",
+        desc: "Level up your RDK X5 Robot Kit! Line following, pick-and-place, and more missions coming as the series grows.",
+        type: "tutorial",
+        tag: "Robotics",
+        read: "12 min read",
+        audience: "Education",
+        likes: 142
+      },
+      {
+        id: 2,
+        t: "IRIV PiControl - Modbus-RTU - Dual K-Type Thermocouple Sensor",
+        a: "Ezral Ezni",
+        d: "18 May 2026",
+        desc: "IRIV PiControl simplifies dual-channel K-Type thermocouple monitoring with Modbus-RTU communication and seamless Node-RED integration.",
+        type: "tutorial",
+        tag: "IoT",
+        read: "15 min read",
+        audience: "Industry",
+        likes: 98
+      },
+      {
+        id: 3,
+        t: "Real-Time Banana Ripeness Detection using RDK X5 AI Board",
+        a: "Norasyiqin Munirah",
+        d: "13 May 2026",
+        desc: "Real-time banana ripeness detection using the RDK X5 AI Board with YOLOv8 BPU acceleration and OpenCV HSV color analysis through a live camera feed.",
+        type: "tutorial",
+        tag: "AI / ML",
+        read: "18 min read",
+        audience: "Industry",
+        likes: 215
+      },
+      {
+        id: 4,
+        t: "Distil: An Offline AI Lecture Note Intelligence System",
+        a: "Nabilah Jailani",
+        d: "12 May 2026",
+        desc: "Offline AI study assistant on Raspberry Pi 5. Upload lecture notes, get instant summaries and exam questions with no internet, no cloud, and full privacy.",
+        type: "tutorial",
+        tag: "Raspberry Pi",
+        read: "22 min read",
+        audience: "Education",
+        likes: 310
+      },
+      {
+        id: 5,
+        t: "AI Animal Sound Classification Using Jetson Orin NX",
+        a: "Muhammad Irwan Zakaria",
+        d: "11 May 2026",
+        desc: "AI-based system using Jetson Orin NX to detect and classify animal sounds such as cats, dogs, and birds in real time.",
+        type: "tutorial",
+        tag: "Jetson",
+        read: "14 min read",
+        audience: "Industry",
+        likes: 167
+      },
+      {
+        id: 6,
+        t: "NemoClaw & OpenShell Integration on Jetson Orin Nano",
+        a: "Muhammad Irwan Zakaria",
+        d: "08 May 2026",
+        desc: "Secure your Edge AI: A step-by-step guide to installing NemoClaw on Jetson Orin Nano. Build a robust sandbox environment for next-gen autonomous agents.",
+        type: "tutorial",
+        tag: "Jetson",
+        read: "11 min read",
+        audience: "Industry",
+        likes: 124
+      },
+      {
+        id: 7,
+        t: "Robot Battle RC Mode with HotRC",
+        a: "Azmir Che Azmi",
+        d: "08 May 2026",
+        desc: "Control your Robot Battle with a remote control HotRC without complications.",
+        type: "tutorial",
+        tag: "Robotics",
+        read: "7 min read",
+        audience: "Education",
+        likes: 85
+      },
+      {
+        id: 8,
+        t: "Colour Detection Automation Bot using HuskyLens",
+        a: "Ng Zhi Tian",
+        d: "08 May 2026",
+        desc: "This is a tutorial teaching you how to combine HuskyLens with Beetle Bit Bot for colour detection automation path guides.",
+        type: "tutorial",
+        tag: "AI / ML",
+        read: "9 min read",
+        audience: "Education",
+        likes: 112
+      },
+      {
+        id: 9,
+        t: "MD10-POT Conveyor Belt Control without Code",
+        a: "Azmir Che Azmi",
+        d: "07 May 2026",
+        desc: "Control conveyor belt speed and directions with MD10-POT - no code required.",
+        type: "tutorial",
+        tag: "Arduino",
+        read: "5 min read",
+        audience: "Education",
+        likes: 74
+      },
+      {
+        id: 10,
+        t: "Securing Node-RED on IRIV PiControl",
+        a: "Raden Fatih",
+        d: "05 May 2026",
+        desc: "Step-by-step guide to securing Node-RED on IRIV PiControl for industrial IoT applications.",
+        type: "tutorial",
+        tag: "Raspberry Pi",
+        read: "13 min read",
+        audience: "Industry",
+        likes: 104
+      },
+      {
+        id: 11,
+        t: "Smart Microphone Alert System Using EDU PICO V2",
+        a: "Muhammad Alif Loqman",
+        d: "04 May 2026",
+        desc: "Project using only one board without any external component for EDU PICO V2.",
+        type: "project",
+        tag: "EDU PICO",
+        read: "8 min read",
+        audience: "Education",
+        likes: 67
+      },
+      {
+        id: 12,
+        t: "EDU PICO V2 Wireless Communication System",
+        a: "Muhammad Alif Loqman",
+        d: "04 May 2026",
+        desc: "Wireless communication project using only one board for EDU PICO V2 and V1.",
+        type: "project",
+        tag: "EDU PICO",
+        read: "10 min read",
+        audience: "Education",
+        likes: 91
+      },
+      {
+        id: 13,
+        t: "DIY SpaceShip Game in EDU PICO V2 with Audio Effect",
+        a: "Muhammad Alif Loqman",
+        d: "04 May 2026",
+        desc: "Create and play a spaceship game anywhere and anytime with EDU PICO V2 single board controller.",
+        type: "project",
+        tag: "EDU PICO",
+        read: "12 min read",
+        audience: "Education",
+        likes: 138
+      },
+      {
+        id: 14,
+        t: "Flappy Bird Game in EDU PICO V2 with Skin Feel",
+        a: "Muhammad Alif Loqman",
+        d: "04 May 2026",
+        desc: "Build a Flappy Bird clone you can play anywhere with EDU PICO V2 single board setup.",
+        type: "project",
+        tag: "EDU PICO",
+        read: "11 min read",
+        audience: "Education",
+        likes: 154
+      },
+      {
+        id: 15,
+        t: "Color Based Water pH System Using EDU PICO V2",
+        a: "Muhammad Alif Loqman",
+        d: "04 May 2026",
+        desc: "Measure water pH using color detection - single board, no external components required.",
+        type: "project",
+        tag: "EDU PICO",
+        read: "9 min read",
+        audience: "Education",
+        likes: 83
+      },
+      {
+        id: 16,
+        t: "Build a Gesture Snake Game inside EDU PICO V2",
+        a: "Muhammad Alif Loqman",
+        d: "04 May 2026",
+        desc: "Play a gesture-controlled Snake game with just the EDU PICO V2 board setup.",
+        type: "project",
+        tag: "EDU PICO",
+        read: "15 min read",
+        audience: "Education",
+        likes: 120
+      },
+      {
+        id: 17,
+        t: "Line Following with MOTION:BIT and Maker Line",
+        a: "Ng Zhi Tian",
+        d: "04 May 2026",
+        desc: "Build a line following robot car using MOTION:BIT and Maker Line sensor board.",
+        type: "tutorial",
+        tag: "Robotics",
+        read: "10 min read",
+        audience: "Education",
+        likes: 95
+      },
+      {
+        id: 18,
+        t: "HandSync: ROS2 Gesture Control Using Jetson Orin NX",
+        a: "Muhammad Irwan Zakaria",
+        d: "28 Apr 2026",
+        desc: "Real-time hand gesture control using Jetson Orin NX, MediaPipe, and ROS2 to drive MasterPi robot.",
+        type: "project",
+        tag: "Jetson",
+        read: "20 min read",
+        audience: "Industry",
+        likes: 189
+      }
+    ];
+
+    const platformEmojis = {
+      'Raspberry Pi': '🍓',
+      'micro:bit': '👾',
+      'Arduino': '♾️',
+      'Jetson': '🧠',
+      'EDU PICO': '🚀',
+      'Robotics': '🤖',
+      'AI / ML': '👁️',
+      'IoT': '🌐'
+    };
+
+    // States
+    let activeCategory = 'All';
+    let searchQuery = '';
+    let activePerspective = 'all'; // 'all', 'Education', 'Industry'
+    let currentLayout = 'grid'; // 'grid', 'list'
+    let currentSort = 'latest'; // 'latest', 'popular', 'alphabetical'
+    let favoriteList = [];
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderCategoryChips();
+      applyFilters();
+
+      // Scroll Button
+      window.addEventListener('scroll', () => {
+        const scrollBtn = document.getElementById('scrollTopBtn');
+        if (window.scrollY > 300) {
+          scrollBtn.style.display = 'flex';
+        } else {
+          scrollBtn.style.display = 'none';
+        }
+      });
+    });
+
+    // Country select
+    function toggleCountryDropdown() {
+      document.getElementById('countryDropdown').classList.toggle('active');
+    }
+
+    function selectCountry(country) {
+      showToast(`Switched to ${country} Store view!`);
+      document.getElementById('countryDropdown').classList.remove('active');
+    }
+
+    // Mobile nav
+    function toggleMobileMenu() {
+      document.getElementById('navLinks').classList.toggle('active');
+    }
+
+    // Category chips rendering
+    function renderCategoryChips() {
+      const wrapper = document.getElementById('categoryChips');
+      const categories = ['All', 'Raspberry Pi', 'micro:bit', 'Arduino', 'Jetson', 'EDU PICO', 'Robotics', 'AI / ML', 'IoT'];
+      
+      wrapper.innerHTML = '';
+      categories.forEach(cat => {
+        const isActive = cat === activeCategory ? 'active' : '';
+        wrapper.innerHTML += `
+          <button class="filter-chip ${isActive}" onclick="setCategory('${cat}')">${cat}</button>
+        `;
+      });
+    }
+
+    function setCategory(cat) {
+      activeCategory = cat;
+      renderCategoryChips();
+      applyFilters();
+      showToast(`Category: ${cat}`);
+    }
+
+    // Perspective shifts
+    function setPerspective(p) {
+      activePerspective = p;
+      
+      document.getElementById('pathAll').classList.remove('active');
+      document.getElementById('pathEducation').classList.remove('active');
+      document.getElementById('pathIndustry').classList.remove('active');
+
+      if (p === 'all') document.getElementById('pathAll').classList.add('active');
+      if (p === 'Education') document.getElementById('pathEducation').classList.add('active');
+      if (p === 'Industry') document.getElementById('pathIndustry').classList.add('active');
+
+      applyFilters();
+      showToast(`Audience Mode: ${p.toUpperCase()}`);
+    }
+
+    // Layout
+    function setLayout(layout) {
+      currentLayout = layout;
+      const grid = document.getElementById('tutorialGrid');
+      
+      document.getElementById('layoutGridBtn').classList.remove('active');
+      document.getElementById('layoutListBtn').classList.remove('active');
+
+      if (layout === 'grid') {
+        grid.classList.remove('list-layout');
+        document.getElementById('layoutGridBtn').classList.add('active');
+      } else {
+        grid.classList.add('list-layout');
+        document.getElementById('layoutListBtn').classList.add('active');
+      }
+    }
+
+    // Sorting
+    function handleSortChange() {
+      currentSort = document.getElementById('sortSelect').value;
+      applyFilters();
+    }
+
+    // Search Input
+    function handleSearchInput() {
+      searchQuery = document.getElementById('searchInput').value.trim();
+      const clearBtn = document.getElementById('clearSearchBtn');
+      if (searchQuery.length > 0) {
+        clearBtn.classList.add('active');
+      } else {
+        clearBtn.classList.remove('active');
+      }
+      applyFilters();
+    }
+
+    function clearSearch() {
+      document.getElementById('searchInput').value = '';
+      searchQuery = '';
+      document.getElementById('clearSearchBtn').classList.remove('active');
+      applyFilters();
+      showToast('Search query cleared');
+    }
+
+    function triggerSearchToast() {
+      if (searchQuery.length > 0) {
+        showToast(`Searching for "${searchQuery}"`);
+      } else {
+        showToast('Please type a search query');
+      }
+    }
+
+    // Filters implementation
+    function applyFilters() {
+      let filtered = tutorials.filter(t => {
+        const matchesCat = activeCategory === 'All' || t.tag === activeCategory;
+        const matchesSearch = searchQuery === '' || 
+          t.t.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          t.desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          t.a.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          t.tag.toLowerCase().includes(searchQuery.toLowerCase());
+        const matchesAudience = activePerspective === 'all' || t.audience === activePerspective;
+        
+        return matchesCat && matchesSearch && matchesAudience;
+      });
+
+      // Sort
+      if (currentSort === 'latest') {
+        filtered.sort((a, b) => new Date(b.d) - new Date(a.d));
+      } else if (currentSort === 'popular') {
+        filtered.sort((a, b) => b.likes - a.likes);
+      } else if (currentSort === 'alphabetical') {
+        filtered.sort((a, b) => a.t.localeCompare(b.t));
+      }
+
+      document.getElementById('resultsCount').innerText = filtered.length;
+      renderGrid(filtered);
+    }
+
+    // Render Cards Grid
+    function renderGrid(filtered) {
+      const grid = document.getElementById('tutorialGrid');
+      
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1/-1; text-align: center; padding: 40px; border: 1px dashed var(--border-dark); border-radius: var(--radius);">
+            <div style="font-size: 2rem; margin-bottom: 10px;">🔍</div>
+            <h4 style="font-weight: 700; margin-bottom: 4px;">No matching tutorials found</h4>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">Try resetting the filters or modifying your search key term.</p>
+            <button class="nav-cta" onclick="clearFilters()">Reset All Filters</button>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = '';
+      filtered.forEach(t => {
+        const emoji = platformEmojis[t.tag] || '📘';
+        const initials = t.a.split(' ').map(w=>w[0]).join('').slice(0,2);
+        const badgeClass = t.type === 'tutorial' ? 'badge-tutorial' : 'badge-project';
+        const isFav = favoriteList.includes(t.id);
+        const heart = isFav ? '❤️' : '🤍';
+
+        grid.innerHTML += `
+          <article class="card">
+            <div class="card-img-placeholder">
+              <span class="card-type-badge ${badgeClass}">${t.type}</span>
+              <button class="card-favorite-btn" onclick="toggleFavorite(event, ${t.id})">${heart}</button>
+              <span>${emoji}</span>
+            </div>
+            <div class="card-body">
+              <div class="card-tags">
+                <span class="card-tag">${t.tag}</span>
+                <span class="card-tag">${t.audience}</span>
+              </div>
+              <h3 onclick="openDetailModal(${t.id})">${t.t}</h3>
+              <p>${t.desc}</p>
+              <div class="card-meta">
+                <span class="card-author">
+                  <span class="card-avatar">${initials}</span>
+                  ${t.a}
+                </span>
+                <div class="card-info">
+                  <span style="font-weight: 700; display: block;">${t.read}</span>
+                  <span>${t.d}</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        `;
+      });
+    }
+
+    // Favorite toggle
+    function toggleFavorite(e, id) {
+      e.stopPropagation();
+      const idx = favoriteList.indexOf(id);
+      if (idx === -1) {
+        favoriteList.push(id);
+        showToast('Saved to bookmarks folder');
+      } else {
+        favoriteList.splice(idx, 1);
+        showToast('Removed from bookmarks');
+      }
+      applyFilters();
+    }
+
+    // Reset filters
+    function clearFilters() {
+      activeCategory = 'All';
+      searchQuery = '';
+      activePerspective = 'all';
+      currentSort = 'latest';
+      
+      document.getElementById('searchInput').value = '';
+      document.getElementById('clearSearchBtn').classList.remove('active');
+      document.getElementById('sortSelect').value = 'latest';
+
+      document.getElementById('pathAll').classList.add('active');
+      document.getElementById('pathEducation').classList.remove('active');
+      document.getElementById('pathIndustry').classList.remove('active');
+
+      renderCategoryChips();
+      applyFilters();
+      showToast('Filters reset successfully');
+    }
+
+    // Toast system
+    function showToast(msg) {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.innerHTML = `<span class="toast-message">${msg}</span>`;
+      
+      container.appendChild(toast);
+      setTimeout(() => toast.classList.add('active'), 50);
+      
+      setTimeout(() => {
+        toast.classList.remove('active');
+        setTimeout(() => toast.remove(), 200);
+      }, 2500);
+    }
+
+    // Modal Submit
+    function openAuthorModal() {
+      document.getElementById('authorModal').classList.add('active');
+    }
+
+    function closeAuthorModal() {
+      document.getElementById('authorModal').classList.remove('active');
+    }
+
+    function handleAuthorSubmit(e) {
+      e.preventDefault();
+      
+      const newTutorial = {
+        id: tutorials.length + 1,
+        t: document.getElementById('formTitle').value,
+        a: document.getElementById('formAuthor').value,
+        d: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
+        desc: document.getElementById('formDesc').value,
+        tag: document.getElementById('formTag').value,
+        type: document.getElementById('formType').value,
+        read: document.getElementById('formRead').value,
+        audience: 'Education',
+        likes: 1
+      };
+
+      tutorials.unshift(newTutorial);
+      applyFilters();
+      closeAuthorModal();
+      document.getElementById('authorForm').reset();
+      
+      showToast('Proposal submitted successfully!');
+    }
+
+    // Modal Detail Quick View
+    function openDetailModal(id) {
+      const tutorial = tutorials.find(t => t.id === id);
+      if (!tutorial) return;
+
+      document.getElementById('detailTitle').innerText = tutorial.t;
+      document.getElementById('detailDesc').innerText = tutorial.desc;
+      document.getElementById('detailTag').innerText = `Tag: ${tutorial.tag}`;
+      document.getElementById('detailBadge').innerText = tutorial.type.toUpperCase();
+      document.getElementById('detailRead').innerText = `⏱️ ${tutorial.read}`;
+
+      document.getElementById('detailModal').classList.add('active');
+    }
+
+    function closeDetailModal() {
+      document.getElementById('detailModal').classList.remove('active');
+    }
+
+    // Scroll
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
